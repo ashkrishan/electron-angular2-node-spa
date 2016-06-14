@@ -19,6 +19,10 @@ export class TabDataComponent {
     });
 
 
-
   }
+  
+    onSubmit() {
+      console.log(this.clientForm.value);
+    }
+
 }
