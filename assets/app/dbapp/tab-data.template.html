@@ -1,0 +1,17 @@
+<form [ngFormModel]="clientForm" (ngSubmit)="onSubmit()">
+    <tabs>
+        <tab tabTitle="Client Details">
+            <div class="form-group">
+                <label for="">FirstName</label>
+                <input class="form-control" type="text" ngControl="firstName" #firstName="ngForm">
+            </div>
+        </tab>
+        <tab tabTitle="Employment">
+            <div class="form-group">
+                <label for="">LastName</label>
+                <input class="form-control" type="text" ngControl="lastName" #lastName="ngForm">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </tab>
+    </tabs>
+</form>

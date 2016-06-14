@@ -4,13 +4,16 @@ import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
 import {NavbarComponent} from './navbar/navbar.component';
 import {MessagesComponent} from './messages/messages.component';
 import {AuthenticationComponent} from './auth/authentication.component';
+import {TabDataComponent} from './dbapp/tab-data.component';
 
 
 
 @Routes([
     {path: '/', component: MessagesComponent  },
     {path: '/auth',  component: AuthenticationComponent},
-    {path: '*',  component: MessagesComponent}
+    {path: '/dbapp', component: TabDataComponent},
+    {path: '*',  component: MessagesComponent},
+
 
 
 ])

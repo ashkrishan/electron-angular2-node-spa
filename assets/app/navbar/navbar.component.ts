@@ -22,6 +22,7 @@ import {ROUTER_DIRECTIVES, Router, RouteSegment} from '@angular/router';
             <ul class="nav navbar-nav">
                 <li><a [routerLink]="['/']">Messages</a></li>
                 <li><a [routerLink]="['/auth']">Authentication</a></li>
+                <li><a [routerLink]="['/dbapp']">DB App</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
