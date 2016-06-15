@@ -42,6 +42,14 @@ gulp.task('vendor', function() {
     // Angular 2 Framework
     gulp.src('node_modules/@angular/**')
         .pipe(gulp.dest(vendor + '/@angular'));
+    
+    // ng2-bootsrap
+    gulp.src('node_modules/ng2-bootstrap/**')
+        .pipe(gulp.dest(vendor + '/ng2-bootstrap'));
+
+    // moment required for ng2-bootsrap
+    gulp.src('node_modules/moment/**')
+        .pipe(gulp.dest(vendor + '/moment'));
 
     //ES6 Shim
     gulp.src('node_modules/es6-shim/**')
@@ -62,6 +70,10 @@ gulp.task('vendor', function() {
     //zonejs
     return gulp.src('node_modules/zone.js/**')
         .pipe(gulp.dest(vendor + '/zone.js/'));
+
+    
+    
+
 });
 
 gulp.task('watch', function () {

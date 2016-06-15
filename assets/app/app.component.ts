@@ -5,6 +5,7 @@ import {NavbarComponent} from './navbar/navbar.component';
 //import {MessagesComponent} from './messages/messages.component';
 import {AuthenticationComponent} from './auth/authentication.component';
 import {TabDataComponent} from './dbapp/tab-data.component';
+import {ClientsListComponent} from './dbapp/clients-list.component';
 
 
 
@@ -12,6 +13,7 @@ import {TabDataComponent} from './dbapp/tab-data.component';
     {path: '/', component: TabDataComponent  },
     {path: '/auth',  component: AuthenticationComponent},
     {path: '/dbapp', component: TabDataComponent},
+    {path: '/clients', component: ClientsListComponent },
     {path: '*',  component: AuthenticationComponent},
 
 

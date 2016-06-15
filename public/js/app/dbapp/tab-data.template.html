@@ -1,16 +1,29 @@
 <form [ngFormModel]="clientForm" (ngSubmit)="onSubmit()">
+    <div class="pull-right">
+        <button class="btn btn-primary " [disabled]="!clientForm.valid">Submit</button>
+    </div>
     <tabs>
         <tab tabTitle="Client Details">
-            <div class="form-group">
-                <label for="">FirstName</label>
-                <input class="form-control" type="text" ngControl="firstName" #firstName="ngForm">
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="">FirstName</label>
+                        <input class="form-control" type="text" ngControl="firstName" #firstName="ngForm">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="">MiddleName</label>
+                        <input class="form-control" type="text" ngControl="middleName" #middleName="ngForm">
+                    </div>
+                </div>
             </div>
         </tab>
         <tab tabTitle="Employment">
             <div class="form-group">
                 <label for="">LastName</label>
                 <input class="form-control" type="text" ngControl="lastName" #lastName="ngForm">
-                <button class="btn btn-primary">Submit</button>
+           
             </div>
         </tab>
     </tabs>
