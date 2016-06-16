@@ -14,9 +14,9 @@ export class TabDataComponent {
 
   constructor(private _fb: FormBuilder) {
     this.clientForm = this._fb.group({
-      firstName: [],
-      middleName: [],
-      lastName: []
+      cl_firstName: [],
+      cl_middleName: [],
+      cl_lastName: []
     });
 
 

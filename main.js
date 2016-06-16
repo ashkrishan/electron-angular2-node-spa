@@ -139,10 +139,11 @@ expressApp.use(function(req, res, next) {
   if (expressApp.get('env') === 'development') {
     expressApp.use(function(err, req, res, next) {
       res.status(err.status || 500);
-      res.render('error', {
-        message: err.message,
-        error: err
-      });
+      console.log(err);
+      // res.render('error', {
+      //   message: err.message,
+      //   error: err
+      // });
     });
   }
 
@@ -150,10 +151,11 @@ expressApp.use(function(req, res, next) {
   // no stacktraces leaked to user
   expressApp.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: {}
-    });
+    console.log(err);
+    // res.render('error', {
+    //   message: err.message,
+    //   error: {}
+    // });
   });
 
   server = http.createServer(expressApp);

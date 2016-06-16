@@ -31,3 +31,14 @@ a.danger {
 .spacing {
   margin-bottom: 20px;
 }
+
+.trash-icon {
+  font-weight: bold;
+  cursor: pointer;
+  color:#888;
+  
+}
+
+.trash-icon:hover {
+  color: red;
+}

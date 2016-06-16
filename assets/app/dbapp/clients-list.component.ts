@@ -1,28 +1,25 @@
-import {Component} from '@angular/core';
-//import {ROUTER_DIRECTIVES} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+
+import {ClientDataService} from './client-data.service';
 
 @Component({
     moduleId: module.id,
     templateUrl: 'clients-list.template.html',
-    //directives: [ROUTER_DIRECTIVES]
-
 })
 
-export class ClientsListComponent {
-    clients = [{
-        clientID: 'AL100',
-        firstName: 'RocketMan',
-        lastName: 'Silver'
-    }, {
-        clientID: 'AL134',
-        firstName: 'lallana',
-        lastName: 'Fred'
-    }, {
-        clientID: 'AL132',
-        firstName: 'Messi',
-        lastName: 'Ronaldo'
+export class ClientsListComponent implements OnInit {
+    clients = [];
+    constructor(private _clientDataService: ClientDataService) {
+
+    }    
+
+    ngOnInit(){
+        this._clientDataService.getData()
+            .subscribe(response =>  this.clients = response
+                                    ,error => console.log(error)
+                                   
+
+            );
     }
-];
-    
 
 }

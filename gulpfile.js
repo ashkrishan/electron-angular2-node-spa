@@ -63,6 +63,10 @@ gulp.task('vendor', function() {
     gulp.src('node_modules/rxjs/**')
         .pipe(gulp.dest(vendor + '/rxjs/'));
 
+        //systemjs
+    gulp.src('node_modules/css-toggle-switch/**')
+        .pipe(gulp.dest(vendor + '/css-toggle-switch/'));
+
     //systemjs
     gulp.src('node_modules/systemjs/**')
         .pipe(gulp.dest(vendor + '/systemjs/'));

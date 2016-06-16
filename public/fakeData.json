@@ -1,0 +1,18 @@
+[
+    {
+        "clientID": "AL100",
+       "firstName": "RocketMan",
+       "lastName": "Silver"
+    }, 
+    {
+        "clientID": "AL134",
+        "firstName": "lallana",
+        "lastName": "Fred"
+    },
+    {
+        "clientID": "AL132",
+        "firstName": "Messi",
+        "lastName": "Ronaldo"
+    }
+
+]
