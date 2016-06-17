@@ -1,0 +1,22 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>User Id</td>
+            <td>Firstname</td>
+            <td>Lastname</td>
+            <td>Email</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+    </thead>
+    <tbody *ngFor="let user of users">
+        <tr>
+            <td>{{ user._id }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td><a (click)="onEdit(user._id)"><i class="fa fa-pencil-square-o"></i></a></td>
+            <td><a class="trash-icon" ><i class="fa fa-trash"></i></a></td>
+        </tr>
+    </tbody>
+</table>

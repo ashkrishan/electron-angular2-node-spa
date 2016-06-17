@@ -5,8 +5,8 @@
         'app':                        'js/app', // 'dist',
         'rxjs':                       'js/vendor/rxjs',
         '@angular':                   'js/vendor/@angular',
-        'moment':                     'js/vendor/moment/moment.js',
-        'ng2-bootstrap/ng2-bootstrap':              'js/vendor/ng2-bootstrap.js',
+        'moment':                     'js/vendor/moment/moment.js'
+        // 'ng2-bootstrap/ng2-bootstrap':              'js/vendor/ng2-bootstrap.js',
         
     };
 

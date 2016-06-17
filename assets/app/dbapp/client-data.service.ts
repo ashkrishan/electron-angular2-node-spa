@@ -15,10 +15,10 @@ export class ClientDataService {
 
     }
         
-    getData() {
-        return this._http.get(this._url)
-            .map(response => response.json() )
-            .catch(error => Observable.throw(error.json()));
+    // getData() {
+    //     return this._http.get(this._url)
+    //         .map(response => response.json() )
+    //         .catch(error => Observable.throw(error.json()));
 
-    }
+    // }
 }

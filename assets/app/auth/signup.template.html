@@ -2,8 +2,7 @@
 
 <form [ngFormModel]="signupForm" (ngSubmit)="onSubmit()">
     <div class="row">
-        <div class="col-md-8 col-offset-2">
-        <span *ngIf="admin.value"><alert type="info" dismissOnTimeout="3000">You have set this user to Admin!</alert></span> 
+        <div class="col-md-8 col-offset-2">       
             <div class="form-group">
                 <label for="">Firstname</label>
                 <input id="firstName" #firstName="ngForm" ngControl="firstName" type="text" class="form-control">
@@ -23,7 +22,8 @@
                     </div>
                 </div>
             </div>
-
+                         
+           <span *ngIf="admin.value"><alert type="info" dismissOnTimeout="3000">You have set this user to Admin!</alert></span>
            <div style="width: 120px;" class="form-group">
                 <label class="switch-light switch-candy" >
                      <input type="checkbox" id="admin" #admin="ngForm" ngControl="admin" type="checkbox" (click)="setAdmin()" class="form-control">
@@ -33,7 +33,7 @@
                             <span>User</span>
                             <span>Admin</span>
                             <a></a>
-                        </span>
+                        </span>                          
                  </label>                 
              </div> 
 

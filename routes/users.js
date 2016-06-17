@@ -5,6 +5,48 @@ var jwt = require('jsonwebtoken');
 
 var User = require('../models/user');
 
+
+router.get('/', function(req, res, next) {
+    var userList = []
+    User.find(function(err, docs) {
+        if (err) {
+            return res.status(404).json({
+                title: 'Users failed to be retrieved',
+                error: err
+            });
+        }
+        docs.forEach(doc => userList.push({_id: doc._id, firstName: doc.firstName, lastName: doc.lastName, email: doc.email}));        
+        //console.log(userList);
+        res.status(200).json({
+        message: 'Users successfully retrieved',
+        obj: userList
+    });
+        
+    });
+
+});
+
+
+router.get('/:id', function(req, res, next) {
+    User.findById(req.params.id, function(err, doc) {
+        if (err) {
+            return res.status(404).json({
+                title: 'Users failed to be retrieved',
+                error: err
+            });
+        }
+        res.status(200).json({
+            message: 'User restrieved',
+            obj: {firstName: doc.firstName, lastName: doc.lastName, email: doc.email}
+        })
+        
+    });
+
+});
+
+
+
+
 router.post('/', function( req, res, next) {
 
     var user = new User({
@@ -61,6 +103,20 @@ router.post('/signin', function(req,res,next) {
     });
 });
 
+
+// router.patch('/:id', function(req, res, next) {
+//     var decoded = jwt.decode(req.query.token);
+
+//     User.findById(req.body.user._id, function(err, doc) {
+//         if(err) {
+//             return res.status(401).json({
+//                 title: 'Unable to find user in database',
+//                 error: err
+//             })
+//         }
+//         var user = User
+//     });
+// })
 
 
 

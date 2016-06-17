@@ -34,9 +34,32 @@ export class UserAuthService {
             .catch(error => Observable.throw(error.json()));
     }
 
+    getUsers() {
+        return this._http.get(this.userUrl)
+            .map(response => { var data = response.json().obj
+                               return data;
+                             })
+            .catch(error => Observable.throw(error.json()));
+        
+    }
+
+    getUser(userId) {
+        return this._http.get(this.userUrl + '/:id')
+            .map(response =>  { var data = response.json().obj
+                               return data;
+                             })
+    }
+
+
     logoutUser() {
         localStorage.clear();
     } 
+
+    // updateUser(user: User) {
+    //     queryString = 
+    //     return this._http.patch(this.userUrl + /
+    //     )
+    // }
 
 
 }
