@@ -9,7 +9,7 @@ import {AdminComponent} from './admin.component';
 
 
 @Routes([
-    {path: '/signup/:id', component: SignupComponent},      //child routes
+    {path: '/admin/:id', component: SignupComponent},      //child routes
     {path: '/signup', component: SignupComponent},      //child routes
     {path: '/signin', component: SigninComponent},       //child routes
     {path: '/logout', component: LogoutComponent},       //child routes

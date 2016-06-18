@@ -58,6 +58,7 @@ export class SignupComponent implements OnInit{
         if(!id) {
             return;
         }
+        console.log(id)
         this._authService.getUser(id)
             .subscribe(response => { this.user = response
                                     console.log(this.user)

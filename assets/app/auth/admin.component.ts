@@ -1,12 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ROUTER_DIRECTIVES} from '@angular/router';
+
+//import {AuthenticationComponent} from './authentication.component';
 
 import {UserAuthService} from './auth.service';
 
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'admin.template.html'
+    templateUrl: 'admin.template.html',
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class AdminComponent implements OnInit{
@@ -24,7 +27,8 @@ export class AdminComponent implements OnInit{
     }
 
     onEdit(userId) {
-        this._router.navigateByUrl('/auth/signup/' + userId);
+        console.log(userId);
+        this._router.navigate(['/auth/admin/' + userId]);
 
     }
 

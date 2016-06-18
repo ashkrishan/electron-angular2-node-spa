@@ -1,11 +1,11 @@
 {
   "_args": [
     [
-      "ng2-bootstrap",
-      "C:\\electron-SPA-Angular2"
+      "ng2-bootstrap@^1.0.17",
+      "c:\\electron-angular2-node-spa"
     ]
   ],
-  "_from": "ng2-bootstrap@latest",
+  "_from": "ng2-bootstrap@>=1.0.17 <2.0.0",
   "_id": "ng2-bootstrap@1.0.17",
   "_inCache": true,
   "_installable": true,
@@ -23,11 +23,11 @@
   "_phantomChildren": {},
   "_requested": {
     "name": "ng2-bootstrap",
-    "raw": "ng2-bootstrap",
-    "rawSpec": "",
+    "raw": "ng2-bootstrap@^1.0.17",
+    "rawSpec": "^1.0.17",
     "scope": null,
-    "spec": "latest",
-    "type": "tag"
+    "spec": ">=1.0.17 <2.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/"
@@ -35,8 +35,8 @@
   "_resolved": "https://registry.npmjs.org/ng2-bootstrap/-/ng2-bootstrap-1.0.17.tgz",
   "_shasum": "474f987ec14e9c2bb2d5ad3dc22bbc10db1eaca1",
   "_shrinkwrap": null,
-  "_spec": "ng2-bootstrap",
-  "_where": "C:\\electron-SPA-Angular2",
+  "_spec": "ng2-bootstrap@^1.0.17",
+  "_where": "c:\\electron-angular2-node-spa",
   "author": {
     "email": "valorkin@gmail.com",
     "name": "Dmitriy Shekhovtsov"
@@ -117,16 +117,16 @@
   "homepage": "https://github.com/valor-software/ng2-bootstrap#readme",
   "keywords": [
     "angular2",
-    "bootstrap",
     "angularjs",
+    "bootstrap",
     "twitter-bootstrap"
   ],
   "license": "MIT",
   "main": "ng2-bootstrap.js",
   "maintainers": [
     {
-      "email": "valorkin@gmail.com",
-      "name": "valorkin"
+      "name": "valorkin",
+      "email": "valorkin@gmail.com"
     }
   ],
   "name": "ng2-bootstrap",

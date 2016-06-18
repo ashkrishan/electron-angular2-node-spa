@@ -5,7 +5,12 @@
         <div class="col-md-8 col-offset-2">       
             <div class="form-group">
                 <label for="">Firstname</label>
-                <input id="firstName" #firstName="ngForm" ngControl="firstName" type="text" class="form-control">
+                <input id="firstName" 
+                        #firstName="ngForm" 
+                        ngControl="firstName" 
+                        type="text" 
+                        class="form-control"
+                        [(ngModel)]="user.firstName">
                 <div *ngIf="firstName.touched && firstName.errors">
                     <div *ngIf="firstName.errors.required" class="alert alert-danger">
                         Field is required
@@ -15,7 +20,9 @@
 
             <div class="form-group">
                 <label for="">Lastname</label>
-                <input id="lastName" #lastName="ngForm" ngControl="lastName" type="text" class="form-control">
+                <input id="lastName" #lastName="ngForm" 
+                      ngControl="lastName" type="text" 
+                      class="form-control" [(ngModel)]="user.lastName">
                 <div *ngIf="lastName.touched && lastName.errors">
                     <div *ngIf="lastName.errors.required" class="alert alert-danger">
                         Field is required
@@ -26,7 +33,10 @@
            <span *ngIf="admin.value"><alert type="info" dismissOnTimeout="3000">You have set this user to Admin!</alert></span>
            <div style="width: 120px;" class="form-group">
                 <label class="switch-light switch-candy" >
-                     <input type="checkbox" id="admin" #admin="ngForm" ngControl="admin" type="checkbox" (click)="setAdmin()" class="form-control">
+                     <input 
+                            id="admin" #admin="ngForm" ngControl="admin" 
+                            type="checkbox" (click)="setAdmin()" 
+                            class="form-control" [checked]="user.admin" >
                         <strong>
                         </strong>
                         <span>
@@ -42,7 +52,8 @@
 
              <div class="form-group">
                 <label for="">Email</label>
-                <input id="email" #email="ngForm" ngControl="email" type="text" class="form-control">
+                <input id="email" #email="ngForm" ngControl="email" type="text" class="form-control" 
+                     [(ngModel)]="user.email" >
                 <div *ngIf="email.touched && email.errors">
                     <div *ngIf="email.errors.required" class="alert alert-danger">
                         Field is required

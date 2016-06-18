@@ -1,11 +1,11 @@
 {
   "_args": [
     [
-      "css-toggle-switch",
-      "C:\\electron-SPA-Angular2"
+      "css-toggle-switch@^4.0.2",
+      "c:\\electron-angular2-node-spa"
     ]
   ],
-  "_from": "css-toggle-switch@latest",
+  "_from": "css-toggle-switch@>=4.0.2 <5.0.0",
   "_id": "css-toggle-switch@4.0.2",
   "_inCache": true,
   "_installable": true,
@@ -19,11 +19,11 @@
   "_phantomChildren": {},
   "_requested": {
     "name": "css-toggle-switch",
-    "raw": "css-toggle-switch",
-    "rawSpec": "",
+    "raw": "css-toggle-switch@^4.0.2",
+    "rawSpec": "^4.0.2",
     "scope": null,
-    "spec": "latest",
-    "type": "tag"
+    "spec": ">=4.0.2 <5.0.0",
+    "type": "range"
   },
   "_requiredBy": [
     "/"
@@ -31,8 +31,8 @@
   "_resolved": "https://registry.npmjs.org/css-toggle-switch/-/css-toggle-switch-4.0.2.tgz",
   "_shasum": "80fed6cb48a8e5f50e0a4a3b9ff6cbeded8d8272",
   "_shrinkwrap": null,
-  "_spec": "css-toggle-switch",
-  "_where": "C:\\electron-SPA-Angular2",
+  "_spec": "css-toggle-switch@^4.0.2",
+  "_where": "c:\\electron-angular2-node-spa",
   "author": {
     "email": "contact@ghinda.net",
     "name": "Ionut Colceriu",
@@ -65,24 +65,24 @@
     "node": ">=0.10.0"
   },
   "files": [
-    "dist/",
-    "src/",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "dist/",
+    "src/"
   ],
   "gitHead": "5b5e51a4d060280c9895858bdb82fee6700bf807",
   "homepage": "https://ghinda.net/css-toggle-switch",
   "keywords": [
     "css",
-    "toggle",
     "switch",
+    "toggle",
     "ui"
   ],
   "license": "MIT",
   "maintainers": [
     {
-      "email": "contact@ghinda.net",
-      "name": "ghinda"
+      "name": "ghinda",
+      "email": "contact@ghinda.net"
     }
   ],
   "name": "css-toggle-switch",

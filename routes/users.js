@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
                 error: err
             });
         }
-        docs.forEach(doc => userList.push({_id: doc._id, firstName: doc.firstName, lastName: doc.lastName, email: doc.email}));        
+        docs.forEach(doc => userList.push({_id: doc._id, firstName: doc.firstName, lastName: doc.lastName, email: doc.email, admin: doc.admin}));        
         //console.log(userList);
         res.status(200).json({
         message: 'Users successfully retrieved',
@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/:id', function(req, res, next) {
+    console.log(req.params.id);
     User.findById(req.params.id, function(err, doc) {
         if (err) {
             return res.status(404).json({
@@ -37,7 +38,7 @@ router.get('/:id', function(req, res, next) {
         }
         res.status(200).json({
             message: 'User restrieved',
-            obj: {firstName: doc.firstName, lastName: doc.lastName, email: doc.email}
+            obj: {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, admin: doc.admin}
         })
         
     });

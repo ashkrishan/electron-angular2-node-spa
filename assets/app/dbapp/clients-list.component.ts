@@ -14,12 +14,12 @@ export class ClientsListComponent implements OnInit {
     }    
 
     ngOnInit(){
-        // this._clientDataService.getData()
-        //     .subscribe(response =>  this.clients = response
-        //                             ,error => console.log(error)
+        this._clientDataService.getData()
+            .subscribe(response =>  this.clients = response
+                                    ,error => console.log(error)
                                    
 
-        //     );
+            );
     }
 
 }

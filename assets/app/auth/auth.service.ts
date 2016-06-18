@@ -44,7 +44,7 @@ export class UserAuthService {
     }
 
     getUser(userId) {
-        return this._http.get(this.userUrl + '/:id')
+        return this._http.get(this.userUrl + '/' + userId)
             .map(response =>  { var data = response.json().obj
                                return data;
                              })
