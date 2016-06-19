@@ -108,14 +108,14 @@ router.post('/signin', function(req,res,next) {
 // router.patch('/:id', function(req, res, next) {
 //     var decoded = jwt.decode(req.query.token);
 
-//     User.findById(req.body.user._id, function(err, doc) {
+//     User.findById(decoded.user._id, function(err, doc) {
 //         if(err) {
 //             return res.status(401).json({
-//                 title: 'Unable to find user in database',
+//                 title: 'Invalid token user request',
 //                 error: err
 //             })
 //         }
-//         var user = User
+//     var user = User
 //     });
 // })
 

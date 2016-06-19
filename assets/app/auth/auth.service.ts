@@ -55,11 +55,11 @@ export class UserAuthService {
         localStorage.clear();
     } 
 
-    // updateUser(user: User) {
-    //     queryString = 
-    //     return this._http.patch(this.userUrl + /
-    //     )
-    // }
+    updateUser(userid, user: User) {
+        var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
+        return this._http.patch(this.userUrl + '/' + userid + token, JSON.stringify(user), {headers: this.headers})
+        
+    }
 
 
 }
