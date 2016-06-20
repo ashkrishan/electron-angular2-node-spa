@@ -22,23 +22,35 @@ import {UserAuthService} from './auth.service';
 export class SignupComponent implements OnInit{
     signupForm : ControlGroup;
     user = User;
+    btnTitle: string;
+    propEdit: boolean = false;
         
     constructor(private _fb: FormBuilder, private _authService: UserAuthService, private _routeSegment: RouteSegment) {
         // this.signupForm.value.admin = false;
     }
 
-    onSubmit() {      
-
-
+    onSubmit() {  
+        if(this.signupForm.value.admin == null) {     //Not sure why ngOnInit is not passign the assignemnt of false to admin control. This is workaround check
+                this.signupForm.value.admin = false;
+        }
         var user = new User(this.signupForm.value.email, 
-                            this.signupForm.value.password, 
-                            this.signupForm.value.firstName,
-                             this.signupForm.value.lastName, 
-                             this.signupForm.value.admin)
+                    this.signupForm.value.password, 
+                    this.signupForm.value.firstName,
+                    this.signupForm.value.lastName, 
+                    this.signupForm.value.admin)
+
+       var id = this._routeSegment.getParam('id'); 
+        if(id) {            
+            this._authService.updateUser(id, user)
+                .subscribe(response => console.log(response),
+                                        error => console.log(error))
+        } else {
+        console.log(user);
         this._authService.signupUser(user)
             .subscribe(response => console.log(response),
                      error => console.log(error)
             );
+        }
     }
 
 
@@ -54,15 +66,17 @@ export class SignupComponent implements OnInit{
         })
         this.signupForm.value.admin = false;
         
-        let id = this._routeSegment.getParam('id'); 
+        var id = this._routeSegment.getParam('id'); 
+        this.btnTitle = id ? 'Edit user' : 'Add new user';
         if(!id) {
             return;
         }
-        console.log(id)
+        // console.log(id);        
         this._authService.getUser(id)
             .subscribe(response => { this.user = response
                                     console.log(this.user)
                                     } )
+        this.propEdit = true;
 
     }
 

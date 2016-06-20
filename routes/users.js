@@ -105,19 +105,53 @@ router.post('/signin', function(req,res,next) {
 });
 
 
-// router.patch('/:id', function(req, res, next) {
-//     var decoded = jwt.decode(req.query.token);
+router.patch('/:id', function(req, res, next) {
+    var decoded = jwt.decode(req.query.token);
+    console.log(req.body);
 
-//     User.findById(decoded.user._id, function(err, doc) {
-//         if(err) {
-//             return res.status(401).json({
-//                 title: 'Invalid token user request',
-//                 error: err
-//             })
-//         }
-//     var user = User
-//     });
-// })
+    User.findById(decoded.user._id, function(err, loggedInUser) {
+        if(err) {
+            return res.status(401).json({
+                title: 'Invalid token user request',
+                error: err
+            })
+        }
+        if(!loggedInUser.admin) {    //if logged in user is admin only then edit the requested user details
+            return res.status(401).json({
+                title: 'You need to be admin to edit this user',
+                error: 'You need to be admin to edit this user'
+            });
+        }
+        
+        User.findByIdAndUpdate(req.params.id, req.body, function(err, updatedUser){
+            if(err) {
+                return res.status(401).json({
+                    title: 'Error retrieving user record or user save operation!!',
+                    error: err
+                });
+            }
+            updatedUser.password = req.body.password;   //Additional callback just because mongodb docs state password http://blog.mongodb.org/post/32866457221/password-authentication-with-mongoose-part-1 with bcrypt can only be hashed on save() method and not on update()
+            updatedUser.save(function(err, result) {
+                if(err) {
+                        return res.status(401).json({
+                            title: 'Problem with password saving',
+                            error: err
+                    });
+                }
+                res.status(200).json({
+                    message: 'Successfully edited user record',
+                    obj: { email: result.email }
+                });
+
+            });
+
+
+        });
+
+        // });
+        
+    });
+})
 
 
 

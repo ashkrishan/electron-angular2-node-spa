@@ -58,6 +58,9 @@ export class UserAuthService {
     updateUser(userid, user: User) {
         var token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
         return this._http.patch(this.userUrl + '/' + userid + token, JSON.stringify(user), {headers: this.headers})
+                .map(response => { var data = response.json().obj 
+                                    return data;
+                                });
         
     }
 
