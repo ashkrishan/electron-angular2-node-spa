@@ -17,6 +17,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 //const routes = require('./routes/index');
 const userRoute = require('./routes/users'); 
+const clientRoute = require('./routes/clients'); 
 const messageRoute = require('./routes/messages'); 
 const appRoutes = require('./routes/app');
 const expressApp = express();
@@ -117,6 +118,7 @@ app.on('ready', function() {
 });
 
 expressApp.use('/user', userRoute);
+expressApp.use('/client', clientRoute);
 expressApp.use('/message', messageRoute);
 expressApp.use('/', appRoutes);
 

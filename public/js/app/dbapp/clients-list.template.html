@@ -1,12 +1,14 @@
 <!--<button class="btn btn-primary" [routerLink]="['/dbapp']">Add Client</button>-->
 <div class="container">
-    <div class="searchbox">
-        <input class="form-control" type="text" placeholder="search client...">
-    </div>
+    <form [ngFormModel]="searchForm" (ngSubmit)="onSearch()">
+        <div class="searchbox form-group">
+            <input class="form-control" ngControl="searchbox" #searchbox="ngForm" type="text" placeholder="search client...">
+        </div>
+    </form>
 </div>
 <div class="container">
     <table class="table table-striped">
-        <thead class="thead-inverse">
+        <thead>
             <tr>
                 <th>Client ID</th>
                 <th>First Name</th>
@@ -15,8 +17,8 @@
                 <th>Delete</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let client of clients">
+        <tbody *ngFor="let client of clients">
+            <tr>
                 <td>{{ client.clientID }}</td>
                 <td>{{ client.firstName }}</td>
                 <td>{{ client.lastName }}</td>

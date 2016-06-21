@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ControlGroup, FormBuilder, Validators} from '@angular/common';
 
 import {ClientDataService} from './client-data.service';
 
@@ -16,17 +17,31 @@ import {ClientDataService} from './client-data.service';
 
 export class ClientsListComponent implements OnInit {
     clients = [];
-    constructor(private _clientDataService: ClientDataService) {
+    searchForm: ControlGroup;
+
+    constructor(private _clientDataService: ClientDataService, private _fb: FormBuilder) {
 
     }    
 
     ngOnInit(){
+        this.searchForm = this._fb.group({
+            searchbox: []
+        });
+
         this._clientDataService.getData()
             .subscribe(response =>  this.clients = response
                                     ,error => console.log(error)
                                    
 
             );
+    }
+
+    onSearch() {
+        var search = this.searchForm.value.searchbox;
+        console.log(search);
+        this._clientDataService.searchData(search)
+            .subscribe(response => console.log(response),
+                        error => console.log(error))
     }
 
 }
