@@ -119,7 +119,7 @@ app.on('ready', function() {
 
 expressApp.use('/user', userRoute);
 expressApp.use('/client', clientRoute);
-expressApp.use('/message', messageRoute);
+//expressApp.use('/message', messageRoute);
 expressApp.use('/', appRoutes);
 
 expressApp.use(function(req, res, next) {

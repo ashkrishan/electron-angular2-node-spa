@@ -30,6 +30,7 @@ export class TabDataComponent implements OnInit{
 
   
     onSubmit() {
+      console.log(this.clientForm.value);
       this._clientDataService.createClient(this.clientForm.value)
         .subscribe(response => console.log(response));
     }

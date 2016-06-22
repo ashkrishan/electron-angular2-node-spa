@@ -19,9 +19,9 @@
         </thead>
         <tbody *ngFor="let client of clients">
             <tr>
-                <td>{{ client.clientID }}</td>
-                <td>{{ client.firstName }}</td>
-                <td>{{ client.lastName }}</td>
+                <td>{{ client._id }}</td>
+                <td>{{ client.cl_firstName }}</td>
+                <td>{{ client.cl_lastName }}</td>
                 <td><a><i class="fa fa-pencil-square-o"></i></a></td>
                 <td><a class="trash-icon"><i class="fa fa-trash"></i></a></td>
             </tr>

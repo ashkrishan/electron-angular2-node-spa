@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var User = require('./user');
 
 var clientSchema = new Schema({
-    firstName: {type: String, required: true},
-    middleName: {type: String, required: true},
-    lastName: {type: String, required: true},
+    cl_firstName: {type: String, required: true},
+    cl_middleName: {type: String, required: true},
+    cl_lastName: {type: String, required: true},
     user: {type: Schema.Types.ObjectId, ref: 'User'}
 });
 

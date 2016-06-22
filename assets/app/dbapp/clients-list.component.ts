@@ -29,7 +29,9 @@ export class ClientsListComponent implements OnInit {
         });
 
         this._clientDataService.getData()
-            .subscribe(response =>  this.clients = response
+            .subscribe(response =>  { this.clients = response 
+                                      console.log(response);
+                                    }
                                     ,error => console.log(error)
                                    
 
