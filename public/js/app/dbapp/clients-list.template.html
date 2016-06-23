@@ -1,8 +1,8 @@
 <!--<button class="btn btn-primary" [routerLink]="['/dbapp']">Add Client</button>-->
 <div class="container">
-    <form [ngFormModel]="searchForm" (ngSubmit)="onSearch()">
+    <form [ngFormModel]="searchForm" >
         <div class="searchbox form-group">
-            <input class="form-control" ngControl="searchbox" #searchbox="ngForm" type="text" placeholder="search client...">
+            <input id="searchbox" class="form-control" ngControl="searchbox" #searchbox="ngForm" type="text" placeholder="search client...">
         </div>
     </form>
 </div>

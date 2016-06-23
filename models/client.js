@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+
+
 var User = require('./user');
 
 var clientSchema = new Schema({
@@ -10,4 +12,3 @@ var clientSchema = new Schema({
 });
 
 module.exports = mongoose.model('Client', clientSchema);
-

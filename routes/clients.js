@@ -18,6 +18,30 @@ router.use('/', function(req,res, next) {
     });
 })
 
+
+//elastic search via mongoosastic api plugin
+router.post('/search', function(req,res) {
+    console.log("request-body - " + req.body.searchbox)
+    Client.find({cl_firstName: {'$regex': req.body.searchbox}}, function(err, results) {
+        if(err) {
+            console.log(err)
+            return res.status(404).json({
+                title: 'Error occured during search',
+                error: err
+
+            });
+        }
+        console.log(results)
+        res.status(200).json({
+            message: 'Search results found',
+            obj: results
+        })
+    });
+});
+
+
+
+
 //get clients
 router.get('/', function(req,res) {
     var decoded = jwt.decode(req.query.token);

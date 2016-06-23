@@ -39,8 +39,12 @@ export class ClientDataService {
     }
 
     searchData(searchString: string) {
-        return this._http.post(this._url + this.token, JSON.stringify(searchString), {headers : this.headers})
-                .map(response => response.json())
+        console.log(searchString);
+        return this._http.post(this._url + '/search' + this.token, JSON.stringify(searchString), {headers : this.headers})
+                .map(response => { var data = response.json().obj 
+                                   return data;
+                                 }
+                )
                 .catch(error => Observable.throw(console.log(error)));
     }
 }
