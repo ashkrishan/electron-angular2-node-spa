@@ -98,9 +98,9 @@ router.post('/', function(req, res) {
             console.log(decoded);
             var test;
             if (decoded.user.FE_Code != null) {
-                 newClient.cl_LD_Id = decoded.user.FE_Code + newClient.seq;
+                 newClient.cl_LD_Id = decoded.user.FE_Code + '_' + newClient.seq;
             } else {
-                 newClient.cl_LD_Id =  'ZZZ' + newClient.seq;
+                 newClient.cl_LD_Id =  'ZZZ' + '_' + newClient.seq;
             }
             console.log(newClient);
             newClient.user = decoded.user;

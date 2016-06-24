@@ -27,7 +27,6 @@ const port = normalizePort(process.env.PORT || '3000');
 var server;
 
 var mongoose = require('mongoose');
-var autoIncrement = require('mongoose-auto-increment'); 
 var connection = mongoose.connect('localhost:27017/electron-spa-angular2');
 
 

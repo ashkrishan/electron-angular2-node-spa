@@ -87,4 +87,3 @@ export class ClientsListComponent implements OnInit {
         //                 error => console.log(error))
     }
 
-}
