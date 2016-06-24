@@ -24,7 +24,7 @@ import {CollapseDirective} from 'ng2-bootstrap/components/collapse';
                <!-- <li><a [routerLink]="['/']">Messages</a></li> -->
                 <li><a [routerLink]="['/auth']">Authentication</a></li>
                 <li><a [routerLink]="['/dbapp']">Add Client</a></li>
-                <li><a [routerLink]="['/clients']">Clients</a></li>
+                <li><a [routerLink]="['/clients']">Client Search</a></li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

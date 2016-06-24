@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
 
+
 var User = require('../models/user');
 var Client = require('../models/client');
 
@@ -18,11 +19,14 @@ router.use('/', function(req,res, next) {
     });
 })
 
-
-//elastic search via mongoosastic api plugin
+//Searches multiple fields (indexed) with Or and regex mongodb clause 
 router.post('/search', function(req,res) {
     console.log("request-body - " + req.body.searchbox)
-    Client.find({cl_firstName: {'$regex': req.body.searchbox}}, function(err, results) {
+    Client.find({ $or: [ {cl_LD_Id: new RegExp(req.body.searchbox, 'i')},
+                         {cl_firstName: new RegExp(req.body.searchbox, 'i')}, 
+                         {cl_lastName: new RegExp(req.body.searchbox, 'i')} 
+                       ] 
+                } , function(err, results) {
         if(err) {
             console.log(err)
             return res.status(404).json({
@@ -84,11 +88,21 @@ router.post('/', function(req, res) {
         }
         Client.create(req.body, function(err, newClient) {
             if(err) {
+                console.log(err);
                 return res.status(404).json({
                     title: 'Failed to create user',
                     error: err
                 });
             }
+            //newClient.cl_LD_Id = decoded.user.FE_Code ? decoded.user.FE_Code + newClient.seq : 'ZZZ' + newClient.seq;
+            console.log(decoded);
+            var test;
+            if (decoded.user.FE_Code != null) {
+                 newClient.cl_LD_Id = decoded.user.FE_Code + newClient.seq;
+            } else {
+                 newClient.cl_LD_Id =  'ZZZ' + newClient.seq;
+            }
+            console.log(newClient);
             newClient.user = decoded.user;
             console.log(newClient.user)
             newClient.save()

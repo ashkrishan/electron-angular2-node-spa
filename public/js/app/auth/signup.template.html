@@ -57,6 +57,16 @@
                     </div>
                 </div>
             </div>
+             <div class="form-group">
+                <label for="">Fee Earner Code</label>
+                <input id="FE_Code" #FE_Code="ngForm" ngControl="FE_Code" type="text" class="form-control" 
+                     [(ngModel)]="user.FE_Code" >
+                <!--<div *ngIf="email.touched && email.errors">
+                    <div *ngIf="email.errors.required" class="alert alert-danger">
+                        Field is required
+                    </div>
+                </div>-->
+            </div>
 
             <div class="form-group">
                 <label for="">Password</label>

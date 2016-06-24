@@ -20,7 +20,8 @@ export class TabDataComponent implements OnInit{
 
   ngOnInit() {
       this.clientForm = this._fb.group({
-      cl_firstName: [],
+      cl_LD_Id: [],
+      cl_firstName: ['', Validators.required],
       cl_middleName: [],
       cl_lastName: []
     });

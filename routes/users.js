@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
                 error: err
             });
         }
-        docs.forEach(doc => userList.push({_id: doc._id, firstName: doc.firstName, lastName: doc.lastName, email: doc.email, admin: doc.admin}));        
+        docs.forEach(doc => userList.push({_id: doc._id, firstName: doc.firstName, lastName: doc.lastName, email: doc.email, FE_Code: doc.FE_Code, admin: doc.admin}));        
         //console.log(userList);
         res.status(200).json({
         message: 'Users successfully retrieved',
@@ -38,7 +38,7 @@ router.get('/:id', function(req, res, next) {
         }
         res.status(200).json({
             message: 'User restrieved',
-            obj: {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, admin: doc.admin}
+            obj: {firstName: doc.firstName, lastName: doc.lastName, email: doc.email, FE_Code: doc.FE_Code, admin: doc.admin}
         })
         
     });
@@ -55,6 +55,7 @@ router.post('/', function( req, res, next) {
         lastName : req.body.lastName,
         password: req.body.password,
         email: req.body.email,
+        FE_Code: req.body.FE_Code,
         admin: req.body.admin        
     });
     user.save(function(err, newUser) {
@@ -105,6 +106,20 @@ router.post('/signin', function(req,res,next) {
 });
 
 
+// //Middleware to verify token and user
+// router.use('/', function(req,res, next) {
+//     jwt.verify(req.query.token, 'secretmakesureyouchangethis', function(err, decoded) {
+//         if (err) {
+//             return res.status(404).json({
+//                 title: 'An errors occured while decoding token',
+//                 error: err
+//             })
+//         }
+//         next();
+//     });
+// })
+
+
 router.patch('/:id', function(req, res, next) {
     var decoded = jwt.decode(req.query.token);
     console.log(req.body);
@@ -133,6 +148,7 @@ router.patch('/:id', function(req, res, next) {
             updatedUser.password = req.body.password;   //Additional callback just because mongodb docs state password http://blog.mongodb.org/post/32866457221/password-authentication-with-mongoose-part-1 with bcrypt can only be hashed on save() method and not on update()
             updatedUser.save(function(err, result) {
                 if(err) {
+                    console.log(err);
                         return res.status(401).json({
                             title: 'Problem with password saving',
                             error: err

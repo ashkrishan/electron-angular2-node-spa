@@ -13,7 +13,7 @@ export class ClientDataService {
     token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
 
     constructor(private _http: Http) {
-
+        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
     }
         
     getData() {
@@ -26,6 +26,13 @@ export class ClientDataService {
             .catch(error => Observable.throw(error.json()));
 
     }
+
+    // getClient(clientId) {            
+    //         return this._http.get(this.url + '/' + clientId + this.token)
+
+        
+    // }
+
 
     createClient(client) {
         const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
@@ -47,4 +54,7 @@ export class ClientDataService {
                 )
                 .catch(error => Observable.throw(console.log(error)));
     }
+
+
+
 }

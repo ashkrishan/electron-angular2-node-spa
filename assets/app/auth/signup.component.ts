@@ -37,7 +37,8 @@ export class SignupComponent implements OnInit{
                     this.signupForm.value.password, 
                     this.signupForm.value.firstName,
                     this.signupForm.value.lastName, 
-                    this.signupForm.value.admin)
+                    this.signupForm.value.admin,
+                    this.signupForm.value.FE_Code)
 
        var id = this._routeSegment.getParam('id'); 
         if(id) {            
@@ -60,7 +61,9 @@ export class SignupComponent implements OnInit{
             lastName: ['', Validators.required],
             admin: [],
             email: ['', Validators.required],
+            FE_Code: [],
             password: ['', Validators.required],
+            
         
     
         })

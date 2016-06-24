@@ -25,8 +25,12 @@ const debug = require('debug')('express-test:server');
 const http = require('http');
 const port = normalizePort(process.env.PORT || '3000');
 var server;
-var mongoose = require('mongoose'); 
-mongoose.connect('localhost:27017/electron-spa-angular2');
+
+var mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment'); 
+var connection = mongoose.connect('localhost:27017/electron-spa-angular2');
+
+
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -127,6 +131,7 @@ expressApp.use(function(req, res, next) {
     err.status = 404;
     next(err);
   });
+
 
   // expressApp.get('/', function(req,res) {
   //   if(err) {

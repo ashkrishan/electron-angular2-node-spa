@@ -30,6 +30,8 @@
     "hbs": "~3.1.0",
     "jsonwebtoken": "^7.0.0",
     "mongoose": "^4.4.19",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-sequence": "^3.0.2",
     "mongoose-unique-validator": "^1.0.2",
     "morgan": "~1.6.1",
     "ng2-bootstrap": "^1.0.17",

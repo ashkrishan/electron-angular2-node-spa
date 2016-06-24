@@ -2,7 +2,7 @@
 <div class="container">
     <form [ngFormModel]="searchForm" >
         <div class="searchbox form-group">
-            <input id="searchbox" class="form-control" ngControl="searchbox" #searchbox="ngForm" type="text" placeholder="search client...">
+            <input id="searchbox" class="form-control" ngControl="searchbox" #searchbox="ngForm" type="text" placeholder="type here to search client name or client ID...">
         </div>
     </form>
 </div>
@@ -19,7 +19,7 @@
         </thead>
         <tbody *ngFor="let client of clients">
             <tr>
-                <td>{{ client._id }}</td>
+                <td>{{ client.cl_LD_Id }}</td>
                 <td>{{ client.cl_firstName }}</td>
                 <td>{{ client.cl_lastName }}</td>
                 <td><a><i class="fa fa-pencil-square-o"></i></a></td>

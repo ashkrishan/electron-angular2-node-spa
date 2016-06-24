@@ -8,6 +8,7 @@ var userSchema = new Schema({
     lastName : {type: String, required: true},
     password: {type: String, required: true},
     email: {type: String, required: true, unique: true},
+    FE_Code: {type: String, required: false},
     admin: {type: Boolean, default: false},
     clients: [{type: Schema.Types.ObjectId, ref: 'Client'}]
 });
