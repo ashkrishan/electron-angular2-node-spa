@@ -10,14 +10,14 @@ export class ClientDataService {
 
     private _url = "http://127.0.0.1:3000/client";
     headers = new Headers({'Content-Type': 'application/json'});
-    token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
+    token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
 
     constructor(private _http: Http) {
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
+        
     }
         
     getData() {
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
+        const token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
         return this._http.get(this._url + token)
             .map(response => { var data = response.json().obj ;
                                return data;
@@ -35,7 +35,7 @@ export class ClientDataService {
 
 
     createClient(client) {
-        const token = localStorage.getItem('token') ? '?token=' + localStorage.getItem('token') : ' ';
+        const token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
         return this._http.post(this._url + token, JSON.stringify(client), {headers : this.headers})
             .map(response => { var data = response.json().obj;
                                return data;
@@ -47,12 +47,13 @@ export class ClientDataService {
 
     searchData(searchString: string) {
         console.log(searchString);
-        return this._http.post(this._url + '/search' + this.token, JSON.stringify(searchString), {headers : this.headers})
+        const token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
+        return this._http.post(this._url + '/search' + token, JSON.stringify(searchString), {headers : this.headers})
                 .map(response => { var data = response.json().obj 
                                    return data;
                                  }
                 )
-                .catch(error => Observable.throw(console.log(error)));
+                .catch(error => Observable.throw(JSON.parse(error._body)));
     }
 
 

@@ -1,38 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, DoCheck} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 import {CollapseDirective} from 'ng2-bootstrap/components/collapse';
+import {Router} from '@angular/router';
+
+import {UserAuthService} from '../auth/auth.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'my-header',
-    template: `
-    <nav class="navbar navbar-default app-navbar-setting" style="display: block;">
-    <div class="container pull-left">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button (click)="isCollapsed = !isCollapsed" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-            aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span> 
-                <span class="icon-bar"></span>
-            </button>
-            <!-- <li><a href="#">Projects</a></li> -->
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div [collapse]="isCollapsed" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav" style="display: block; ">
-               <!-- <li><a [routerLink]="['/']">Messages</a></li> -->
-                <li><a [routerLink]="['/auth']">Authentication</a></li>
-                <li><a [routerLink]="['/dbapp']">Add Client</a></li>
-                <li><a [routerLink]="['/clients']">Client Search</a></li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-
-    `,
+    templateUrl: 'navbar.template.html',
     directives: [ROUTER_DIRECTIVES, CollapseDirective],
     styles: [`
         .router-link-active {
@@ -46,11 +22,44 @@ import {CollapseDirective} from 'ng2-bootstrap/components/collapse';
 
 })
 
-export class NavbarComponent {
+export class NavbarComponent implements  OnInit, DoCheck{
     public isCollapsed:boolean = true;
-    // constructor() {
+    signinMarker:boolean = false;
+    isAdmin:boolean = false;
 
+    constructor(private _authService: UserAuthService ) {
+    //    this.signinMarker = this._authService.isLoggedIn();
+    //    console.log(this.signinMarker)
+    }
+
+    // ngAfterContentChecked() {
+    //       this.signinMarker = this._authService.isLoggedIn();
+    //       console.log(this.signinMarker)
     // }
+
+
+    ngOnInit () {
+        this.signinMarker = false;
+        this.isAdmin = false;
+
+    }
+
+    ngDoCheck() {
+        if(!this.signinMarker) { 
+            this.signinMarker = this._authService.isLoggedIn();
+             console.log(this.signinMarker)
+
+            if(this.signinMarker && !this.isAdmin) {
+                 this._authService.getUser(sessionStorage.getItem('userId'))
+                    .subscribe(user => { this.isAdmin = user.admin  
+                                     console.log(" Admin prop - " + this.isAdmin);
+                                   },
+                                   error => console.log(error));              
+            }
+        } 
+    }
+
+
 
     // isCurrentRoute (routeUrl) {
     //     this._router.urlTree.contains(this._router.createUrlTree(['/', this._routeSegment]))

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
+import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 import {SignupComponent} from './signup.component';
 import {SigninComponent} from './signin.component';
@@ -19,15 +19,18 @@ import {AdminComponent} from './admin.component';
 @Component ({
     selector: 'my-auth',
     template: `
-            <header>
-                    <ul class="nav nav-pills" id="sublinks">
-                        <li><a class="menu-button" [routerLink]="['./signup']">Create User</a></li>
-                        <li><a class="menu-button"  [routerLink]="['./signin']">Sign-in</a></li>
-                        <li><a class="menu-button"  [routerLink]="['./logout']">Logout</a></li>
-                        <li><a class="menu-button"  [routerLink]="['./admin']">Admin</a></li>
-                    </ul>
-            </header>
-        <router-outlet></router-outlet>
+            <div *ngIf="isToken">
+                <header>
+                        <ul class="nav nav-pills" id="sublinks">
+                            <li><a class="menu-button" [routerLink]="['./signup']">Create User</a></li>
+                            <li><a class="menu-button"  [routerLink]="['./signin']">Sign-in</a></li>
+                            <li><a class="menu-button"  [routerLink]="['./logout']">Logout</a></li>
+                            <li><a class="menu-button"  [routerLink]="['./admin']">Admin</a></li>
+                        </ul>
+                </header>
+            </div>
+            <router-outlet></router-outlet>
+            
     `,
     directives: [ROUTER_DIRECTIVES],
     styles: [`
@@ -88,6 +91,20 @@ ul#sublinks > li {
 })
 
 export class AuthenticationComponent {
+    public isToken:boolean = false;
+
+    constructor(public _router: Router) {
+
+    }
+
+    ngOnInit () {
+        if(sessionStorage.getItem('token') && sessionStorage.getItem('token') != null) {
+           this.isToken = true;         
+           return;
+        } 
+        this._router.navigateByUrl('/auth/signin');
+    }
+
 
 }
 

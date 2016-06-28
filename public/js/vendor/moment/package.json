@@ -2,7 +2,7 @@
   "_args": [
     [
       "moment@2.x.x",
-      "c:\\electron-angular2-node-spa\\node_modules\\joi"
+      "C:\\electron-SPA-Angular2\\node_modules\\joi"
     ]
   ],
   "_from": "moment@>=2.0.0 <3.0.0",
@@ -29,14 +29,13 @@
     "type": "range"
   },
   "_requiredBy": [
-    "/joi",
-    "/ng2-bootstrap"
+    "/joi"
   ],
   "_resolved": "https://registry.npmjs.org/moment/-/moment-2.13.0.tgz",
   "_shasum": "24162d99521e6d40f99ae6939e806d2139eaac52",
   "_shrinkwrap": null,
   "_spec": "moment@2.x.x",
-  "_where": "c:\\electron-angular2-node-spa\\node_modules\\joi",
+  "_where": "C:\\electron-SPA-Angular2\\node_modules\\joi",
   "author": {
     "email": "iskren.chernev@gmail.com",
     "name": "Iskren Ivov Chernev",
@@ -47,8 +46,8 @@
   },
   "contributors": [
     {
-      "name": "Tim Wood",
       "email": "washwithcare@gmail.com",
+      "name": "Tim Wood",
       "url": "http://timwoodcreates.com/"
     },
     {
@@ -56,18 +55,18 @@
       "url": "http://rockymeza.com"
     },
     {
-      "name": "Matt Johnson",
       "email": "mj1856@hotmail.com",
+      "name": "Matt Johnson",
       "url": "http://codeofmatt.com"
     },
     {
-      "name": "Isaac Cambron",
       "email": "isaac@isaaccambron.com",
+      "name": "Isaac Cambron",
       "url": "http://isaaccambron.com"
     },
     {
-      "name": "Andre Polykanine",
       "email": "andre@oire.org",
+      "name": "Andre Polykanine",
       "url": "https://github.com/oire"
     }
   ],
@@ -121,34 +120,34 @@
       "uglify": true
     },
     "files": [
-      "locale",
-      "moment.js"
+      "moment.js",
+      "locale"
     ],
     "map": {
       "moment": "./moment"
     }
   },
   "keywords": [
+    "moment",
     "date",
-    "ender",
+    "time",
+    "parse",
     "format",
+    "validate",
     "i18n",
     "l10n",
-    "moment",
-    "parse",
-    "time",
-    "validate"
+    "ender"
   ],
   "license": "MIT",
   "main": "./moment.js",
   "maintainers": [
     {
-      "name": "timrwood",
-      "email": "washwithcare@gmail.com"
+      "email": "washwithcare@gmail.com",
+      "name": "timrwood"
     },
     {
-      "name": "ichernev",
-      "email": "iskren.chernev@gmail.com"
+      "email": "iskren.chernev@gmail.com",
+      "name": "ichernev"
     }
   ],
   "name": "moment",

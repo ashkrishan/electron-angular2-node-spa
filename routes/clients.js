@@ -10,6 +10,13 @@ var Client = require('../models/client');
 router.use('/', function(req,res, next) {
     jwt.verify(req.query.token, 'secretmakesureyouchangethis', function(err, decoded) {
         if (err) {
+            console.log(err.name);
+            if (err.name == 'TokenExpiredError') {
+                return res.status(403).json({
+                    title: 'Re-login',
+                    error: err
+                });
+            }
             return res.status(404).json({
                 title: 'An errors occured while decoding token',
                 error: err

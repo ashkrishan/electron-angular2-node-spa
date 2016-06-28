@@ -27,6 +27,7 @@ router.get('/', function(req, res) {
 router.use('/', function( req,res, next) {
     jwt.verify(req.query.token, 'secretmakesureyouchangethis', function(err, decoded) {
         if (err) {
+            console.log(err);
             return res.status(404).json({
                 title: 'An errors occured while decoding token',
                 error: err

@@ -6,6 +6,7 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
+import {Router} from '@angular/router';
 // import 'rxjs/add/operator/mergeAll';
 
 
@@ -27,8 +28,10 @@ import {ClientDataService} from './client-data.service';
 export class ClientsListComponent implements OnInit {
     clients: Observable<any>;
     searchForm: ControlGroup;
+    isToken: boolean = false;
 
-    constructor(private _clientDataService: ClientDataService, private _fb: FormBuilder) {
+    constructor(private _clientDataService: ClientDataService, private _fb: FormBuilder, private _router: Router) {
+        this.isToken = true;
 
     }    
 
@@ -44,8 +47,16 @@ export class ClientsListComponent implements OnInit {
             .subscribe(data => this._clientDataService.searchData(this.searchForm.value)            
                                 .subscribe(response =>  { this.clients = response 
                                       console.log(response);
+
                                     }
-                                    ,error => console.log(error))
+                                    ,error => { console.log(error);
+                                                if (error.error.name == 'TokenExpiredError') {
+                                                    alert("Your session has expired. Please re-login!");
+                                                    this._router.navigateByUrl('/auth/signin');
+                                                } else {
+                                                    console.log(error);
+                                                }
+                                              })
             )
     
             //.subscribe(response => console.log(response));

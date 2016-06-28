@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
-import {Routes, ROUTER_DIRECTIVES} from '@angular/router';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
+import {Routes, ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 import {NavbarComponent} from './navbar/navbar.component';
 //import {MessagesComponent} from './messages/messages.component';
 import {AuthenticationComponent} from './auth/authentication.component';
 import {TabDataComponent} from './dbapp/tab-data.component';
 import {ClientsListComponent} from './dbapp/clients-list.component';
+import {SigninComponent} from './auth/signin.component';
+import {LogoutComponent} from './auth/logout.component';
 
 
 
 @Routes([
-    {path: '/', component: TabDataComponent  },
+    {path: '/', component: SigninComponent  },
     {path: '/auth',  component: AuthenticationComponent},
     {path: '/dbapp', component: TabDataComponent},
     {path: '/clients', component: ClientsListComponent },
-    {path: '*',  component: AuthenticationComponent},
+    {path: '/logout', component: LogoutComponent },
+
+    {path: '*',  component: SigninComponent},
 
 
 
@@ -25,7 +29,7 @@ import {ClientsListComponent} from './dbapp/clients-list.component';
     selector: 'my-app',
     template: `
         <my-header></my-header>
-        <div class="container-fluid">            
+         <div class="container-fluid">            
             <router-outlet></router-outlet>
         </div>
     `,
@@ -35,5 +39,23 @@ import {ClientsListComponent} from './dbapp/clients-list.component';
    
 })
 export class AppComponent {
+    public isToken:boolean = false;
+
+    constructor(public _router: Router) {
+
+    }
+
+    ngOnInit () {                
+        if(sessionStorage.getItem('token') && sessionStorage.getItem('token') != null) {
+           this.isToken = true;         
+           this._router.navigateByUrl('/clients');
+           return;
+        } 
+        
+        this._router.navigateByUrl('/auth/signin');
+       
+
+    // }
+
 
 }

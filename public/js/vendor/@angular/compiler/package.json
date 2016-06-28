@@ -2,7 +2,7 @@
   "_args": [
     [
       "@angular/compiler@2.0.0-rc.1",
-      "c:\\electron-angular2-node-spa"
+      "C:\\electron-SPA-Angular2"
     ]
   ],
   "_from": "@angular/compiler@2.0.0-rc.1",
@@ -36,7 +36,7 @@
   "_shasum": "2f69d866bc7623c80ba05dd4e1339bcfb02d0960",
   "_shrinkwrap": null,
   "_spec": "@angular/compiler@2.0.0-rc.1",
-  "_where": "c:\\electron-angular2-node-spa",
+  "_where": "C:\\electron-SPA-Angular2",
   "author": {
     "name": "angular"
   },
@@ -53,8 +53,8 @@
   "main": "index.js",
   "maintainers": [
     {
-      "name": "angular",
-      "email": "angular-core+npm@google.com"
+      "email": "angular-core+npm@google.com",
+      "name": "angular"
     }
   ],
   "name": "@angular/compiler",

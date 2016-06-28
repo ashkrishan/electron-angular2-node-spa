@@ -2,7 +2,7 @@
   "_args": [
     [
       "@angular/upgrade@2.0.0-rc.1",
-      "c:\\electron-angular2-node-spa"
+      "C:\\electron-SPA-Angular2"
     ]
   ],
   "_from": "@angular/upgrade@2.0.0-rc.1",
@@ -36,7 +36,7 @@
   "_shasum": "50278e5e605b9629e6130db523005951695149ee",
   "_shrinkwrap": null,
   "_spec": "@angular/upgrade@2.0.0-rc.1",
-  "_where": "c:\\electron-angular2-node-spa",
+  "_where": "C:\\electron-SPA-Angular2",
   "author": {
     "name": "angular"
   },
@@ -53,8 +53,8 @@
   "main": "upgrade.js",
   "maintainers": [
     {
-      "name": "angular",
-      "email": "angular-core+npm@google.com"
+      "email": "angular-core+npm@google.com",
+      "name": "angular"
     }
   ],
   "name": "@angular/upgrade",
