@@ -10,7 +10,7 @@ export class ClientDataService {
 
     private _url = "http://127.0.0.1:3000/client";
     headers = new Headers({'Content-Type': 'application/json'});
-    token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
+    //token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
 
     constructor(private _http: Http) {
         
@@ -27,11 +27,14 @@ export class ClientDataService {
 
     }
 
-    // getClient(clientId) {            
-    //         return this._http.get(this.url + '/' + clientId + this.token)
-
-        
-    // }
+    getClient(clientId) {
+            const token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';            
+            return this._http.get(this._url + '/' + clientId + token)
+                    .map(response => { var data = response.json().obj 
+                                        return data;
+                                     })
+            .catch(error => Observable.throw(console.log(error)));        
+    }
 
 
     createClient(client) {
@@ -46,7 +49,6 @@ export class ClientDataService {
     }
 
     searchData(searchString: string) {
-        console.log(searchString);
         const token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
         return this._http.post(this._url + '/search' + token, JSON.stringify(searchString), {headers : this.headers})
                 .map(response => { var data = response.json().obj 
@@ -54,6 +56,18 @@ export class ClientDataService {
                                  }
                 )
                 .catch(error => Observable.throw(JSON.parse(error._body)));
+    }
+
+    updateClient(clientId, client){
+        const token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
+        return this._http.patch(this._url + '/' + clientId + token, JSON.stringify(client), {headers: this.headers})
+                .map(response => { var data = response.json().obj ;
+                                   //var message = response.json().message; 
+                                   return data;
+                                 }
+                )
+                .catch(error => Observable.throw(JSON.parse(error._body)));
+
     }
 
 

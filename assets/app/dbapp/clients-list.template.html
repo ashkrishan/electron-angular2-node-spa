@@ -23,7 +23,7 @@
                 <td>{{ client.cl_LD_Id }}</td>
                 <td>{{ client.cl_firstName }}</td>
                 <td>{{ client.cl_lastName }}</td>
-                <td><a><i class="fa fa-pencil-square-o"></i></a></td>
+                <td><a (click)="onEditClient(client._id)"><i class="fa fa-pencil-square-o"></i></a></td>
                 <td><a class="trash-icon"><i class="fa fa-trash"></i></a></td>
             </tr>
         </tbody>

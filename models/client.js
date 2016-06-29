@@ -14,7 +14,10 @@ var clientSchema = new Schema({
     cl_firstName: {type: String, required: true},
     cl_middleName: {type: String, required: true},
     cl_lastName: {type: String, required: true},
-    user: {type: Schema.Types.ObjectId, ref: 'User'}
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    created_date: {type: Date, required: false, default: Date.now},
+    modified_by: {type: Schema.Types.ObjectId, ref: 'User'},
+    modified_date: {type: Date, required: false, default: Date.now}
 });
 
 clientSchema.plugin(mongooseUniqueValidator);

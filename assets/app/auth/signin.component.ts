@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ControlGroup, FormBuilder, Validators} from '@angular/common';
 import {Router} from '@angular/router';
 
@@ -20,7 +20,6 @@ import {UserAuthService} from './auth.service';
 
 export class SigninComponent implements OnInit {
     signinForm: ControlGroup;
-    @Input() hasSignedIn: boolean = false;
 
     constructor(private _fb: FormBuilder, private _authService: UserAuthService, private _router: Router) {
         
@@ -44,7 +43,6 @@ export class SigninComponent implements OnInit {
                                  sessionStorage.setItem('userId', data.userId);
                                 // localStorage.setItem('token', data.token);
                                 // localStorage.setItem('userId', data.userId);
-                                this.hasSignedIn = true;
                                 this._router.navigate(['/clients']);
                                },
                                     error => { this.showError(error) 

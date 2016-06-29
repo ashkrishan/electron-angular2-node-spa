@@ -11,13 +11,13 @@ import {LogoutComponent} from './auth/logout.component';
 
 
 
-@Routes([
+@Routes([    
     {path: '/', component: SigninComponent  },
+    {path: '/clients/:id', component: TabDataComponent },
     {path: '/auth',  component: AuthenticationComponent},
     {path: '/dbapp', component: TabDataComponent},
     {path: '/clients', component: ClientsListComponent },
     {path: '/logout', component: LogoutComponent },
-
     {path: '*',  component: SigninComponent},
 
 
@@ -55,7 +55,7 @@ export class AppComponent {
         this._router.navigateByUrl('/auth/signin');
        
 
-    // }
+    }
 
 
 }

@@ -83,6 +83,9 @@ router.get('/', function(req,res) {
 });
 
 
+
+
+
 //create new client
 router.post('/', function(req, res) {
     var decoded = jwt.decode(req.query.token);
@@ -103,7 +106,6 @@ router.post('/', function(req, res) {
             }
             //newClient.cl_LD_Id = decoded.user.FE_Code ? decoded.user.FE_Code + newClient.seq : 'ZZZ' + newClient.seq;
             console.log(decoded);
-            var test;
             if (decoded.user.FE_Code != null) {
                  newClient.cl_LD_Id = decoded.user.FE_Code + '_' + newClient.seq;
             } else {
@@ -111,6 +113,7 @@ router.post('/', function(req, res) {
             }
             console.log(newClient);
             newClient.user = decoded.user;
+
             console.log(newClient.user)
             newClient.save()
             res.status(200).json({
@@ -121,5 +124,83 @@ router.post('/', function(req, res) {
     });
     
 });
+
+
+//Get client for edit
+router.get('/:id', function(req,res) {
+    var decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user_id, function(err, decodedUser){
+        if(err) {
+            return res.status(401).json({
+                title:'User dont match the decoded token',
+                error: err
+            });
+        }
+        Client.findById(req.params.id, function(err, client) {
+            if(err) {
+                return res.status(404).json({
+                    title: 'Client not found',
+                    error: err
+                });
+            }            
+            res.status(200).json({
+                message: 'Client retrieved',
+                obj: client
+            });
+        });
+    });
+});
+
+
+//Update client
+router.patch('/:id', function(req, res, next) {
+    var decoded = jwt.decode(req.query.token);
+    console.log(req.body);
+    User.findById(decoded.user._id, function(err, loggedInUser) {    //get logegd in user
+        if(err) {
+            return res.status(401).json({
+                title: 'Invalid token user request',
+                error: err
+            })
+        }                
+        Client.findById(req.params.id, function(err, foundClient) {     //get existing record for client
+            if(err) {
+                return console.log(err);
+            }
+            Client.findByIdAndUpdate(req.params.id, req.body, function(err, updatedClient){    //Update client records 
+                if(err) {
+                    return res.status(401).json({
+                        title: 'Error retrieving user record or user save operation!!',
+                        error: err
+                    });
+                }
+                updatedClient.modified_by = decoded.user;  //currently logegd in user who is modifying record
+                var isodate = new Date().toISOString()
+                updatedClient.modified_date = isodate;
+                updatedClient.save(function(err, result) {
+                    if(err) {
+                        console.log(err);
+                            return res.status(401).json({
+                                title: 'Problem saving user to modify or created',
+                                error: err
+                        });
+                    }
+                    res.status(200).json({
+                        message: 'Successfully edited user record',
+                        obj: result
+                    });
+
+                    });
+
+                });
+        });
+
+        // });
+        
+    });
+})
+
+
+
 
 module.exports = router;

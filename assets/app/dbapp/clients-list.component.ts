@@ -58,6 +58,16 @@ export class ClientsListComponent implements OnInit {
                                                 }
                                               })
             )
+            
+        }
+
+
+        onEditClient(clientId) {
+            console.log(clientId);
+            this._router.navigate(['/clients/' + clientId])                
+            
+        }
+
     
             //.subscribe(response => console.log(response));
 
@@ -70,7 +80,7 @@ export class ClientsListComponent implements OnInit {
                                    
 
             // );
-    }
+    
 
     // onSearch() {
     //    this.clients$ = this.searchForm.controls.searchbox.valueChanges

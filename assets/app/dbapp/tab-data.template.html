@@ -1,26 +1,29 @@
 <form [ngFormModel]="clientForm" (ngSubmit)="onSubmit()">
-    <div class="pull-right">
-        <button class="btn btn-primary" [disabled]="!clientForm.valid">Submit</button>
-    </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">                
+                <button class="btn btn-primary pull-right" [disabled]="!clientForm.valid">{{ btnTitle }}</button>
+            </div>
+        </div>
+    <hr />
     <tabs>
         <tab tabTitle="Client Details">
             <div class="row">
                 <div class="col-md-3 col-lg-3">
                     <div class="form-group">
                         <label for="">First Name</label>
-                        <input class="form-control" type="text" ngControl="cl_firstName" #cl_firstName="ngForm">
+                        <input class="form-control" type="text" ngControl="cl_firstName" #cl_firstName="ngForm" [(ngModel)]="client.cl_firstName">
                     </div>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     <div class="form-group">
                         <label for="">Middle Name</label>
-                        <input class="form-control" type="text" ngControl="cl_middleName" #cl_middleName="ngForm">
+                        <input class="form-control" type="text" ngControl="cl_middleName" #cl_middleName="ngForm" [(ngModel)]="client.cl_middleName">
                     </div>
                 </div>
                 <div class="col-md-3 col-lg-3">
                     <div class="form-group">
                         <label for="">Last Name</label>
-                        <input class="form-control" type="text" ngControl="cl_lastName" #cl_lastName="ngForm">
+                        <input class="form-control" type="text" ngControl="cl_lastName" #cl_lastName="ngForm" [(ngModel)]="client.cl_lastName">
                     </div>
                 </div>
             </div>
@@ -30,7 +33,92 @@
                 <label for="">Employer details</label>
                 <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
             </div>
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+
+        </tab>
+        <tab tabTitle="Tab 3">
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+
+        </tab>
+        <tab tabTitle="Tab 4">
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+
+        </tab>
+        <tab tabTitle="Tab 5">
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+
+        </tab>
+        <tab tabTitle="Tab 6">
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+
+        </tab>
+        <tab tabTitle="Tab 7">
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+
+        </tab>
+        <tab tabTitle="Tab 8">
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+
+        </tab>
+        <tab tabTitle="Tab 9">
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="">Employer details</label>
+                <textarea type="text" class="form-control" rows="5" cols="10"></textarea>
+            </div>
 
         </tab>
     </tabs>
 </form>
+<footer *ngIf="created_date">
+<span>Client Creation date: {{ created_date }}</span>
+<span class="pull-right">Modified on: {{ modified_date }}</span>
+</footer>
