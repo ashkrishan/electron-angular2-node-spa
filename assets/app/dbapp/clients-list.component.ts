@@ -9,6 +9,8 @@ import 'rxjs/add/operator/map';
 import {Router} from '@angular/router';
 // import 'rxjs/add/operator/mergeAll';
 
+import {UserAuthService} from '../auth/auth.service';
+
 
 
 import {ClientDataService} from './client-data.service';
@@ -30,7 +32,7 @@ export class ClientsListComponent implements OnInit {
     searchForm: ControlGroup;
     isToken: boolean = false;
 
-    constructor(private _clientDataService: ClientDataService, private _fb: FormBuilder, private _router: Router) {
+    constructor(private _clientDataService: ClientDataService, private _fb: FormBuilder, private _router: Router, private _authService: UserAuthService) {
         this.isToken = true;
 
     }    
@@ -52,7 +54,9 @@ export class ClientsListComponent implements OnInit {
                                     ,error => { console.log(error);
                                                 if (error.error.name == 'TokenExpiredError') {
                                                     alert("Your session has expired. Please re-login!");
+                                                    this._authService.logoutUser();
                                                     this._router.navigateByUrl('/auth/signin');
+                                                    location.reload();
                                                 } else {
                                                     console.log(error);
                                                 }

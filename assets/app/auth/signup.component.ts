@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ControlGroup, FormBuilder, Validators} from '@angular/common';
 import {AlertComponent} from 'ng2-bootstrap/components/alert';
-import {RouteSegment} from '@angular/router';
+import {RouteSegment, Router} from '@angular/router';
 
 import {User} from './user';
 import {UserAuthService} from './auth.service';
@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit{
     btnTitle: string;
     propEdit: boolean = false;
         
-    constructor(private _fb: FormBuilder, private _authService: UserAuthService, private _routeSegment: RouteSegment) {
+    constructor(private _fb: FormBuilder, private _authService: UserAuthService, private _routeSegment: RouteSegment, private _router: Router) {
         // this.signupForm.value.admin = false;
     }
 
@@ -43,12 +43,18 @@ export class SignupComponent implements OnInit{
        var id = this._routeSegment.getParam('id'); 
         if(id) {            
             this._authService.updateUser(id, user)
-                .subscribe(response => console.log(response),
+                .subscribe(response => { console.log(response) 
+                                         alert('User edit successful');
+                                         this._router.navigate(['/auth/admin']);
+                                       },
                                         error => console.log(error))
         } else {
         console.log(user);
         this._authService.signupUser(user)
-            .subscribe(response => console.log(response),
+            .subscribe(response => { console.log(response);
+                                    alert('User - ' + response.firstName  +  ' has been successfully created!');
+                                    this._router.navigate(['/auth/admin']);
+                                   },
                      error => console.log(error)
             );
         }

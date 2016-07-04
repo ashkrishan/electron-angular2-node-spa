@@ -67,7 +67,7 @@ router.post('/', function( req, res, next) {
             }
             res.status(200).json({
             message: 'User created',
-            obj: [{firstName: newUser.firstName, lastName: newUser.lastName }]
+            obj: {firstName: newUser.firstName, lastName: newUser.lastName }
         });       
     });
 });

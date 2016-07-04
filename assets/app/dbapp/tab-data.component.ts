@@ -1,9 +1,13 @@
+//Core
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder,ControlGroup, Validators} from '@angular/common';
 import {RouteSegment} from '@angular/router';
 
+//Thirdparty
+import {AlertComponent} from 'ng2-bootstrap/components/alert';
 import * as moment from 'moment';
 
+//app
 import {TabsComponent} from '../shared/tabs.component';
 import {TabComponent} from '../shared/tab.component';
 import {ClientDataService} from './client-data.service';
@@ -11,7 +15,7 @@ import {ClientDataService} from './client-data.service';
 @Component({
   moduleId: module.id, 
   templateUrl: 'tab-data.template.html',
-  directives: [TabsComponent, TabComponent],
+  directives: [TabsComponent, TabComponent, AlertComponent],
   styles: [`
    footer {
    position:fixed;
@@ -27,6 +31,10 @@ import {ClientDataService} from './client-data.service';
     .footer-list {
       float: right;
     }
+  
+    .alert-message {
+      width: 50%;
+    }
   `]
 
 })
@@ -39,7 +47,9 @@ export class TabDataComponent implements OnInit{
   client = {};
   btnTitle: String;
   created_date: string;  
-  modified_date: string;  
+  modified_date: string;
+  isUserCreated: boolean = false;
+  alertMessage: string;
 
   constructor(private _fb: FormBuilder, private _clientDataService: ClientDataService, private _routeSegment: RouteSegment) {
 
@@ -57,7 +67,7 @@ export class TabDataComponent implements OnInit{
     // console.log(now);
 
     var id = this._routeSegment.getParam('id');
-    this.btnTitle = id ? 'Edit client': 'Save Client';
+    this.btnTitle = id ? 'Edit client': 'Add & save new client';
     console.log(id);
     if(id) {
       this._clientDataService.getClient(id)
@@ -73,16 +83,25 @@ export class TabDataComponent implements OnInit{
 
   
     onSubmit() {
+      this.isUserCreated = false;
       var id = this._routeSegment.getParam('id');
       if(id) {
         this._clientDataService.updateClient(id, this.clientForm.value)
-          .subscribe(response => console.log(response));
+          .subscribe(response => { console.log(response) 
+                                    this.isUserCreated = true;
+                                    this.alertMessage = 'Client "' + response.cl_firstName + '" has been successfully edited and saved!';
+                                 } );
           
       } else {
       console.log(this.clientForm.value);
       this._clientDataService.createClient(this.clientForm.value)
-        .subscribe(response => console.log(response));
-        }
-    }
+          .subscribe(response => { console.log(response) 
+                                    this.isUserCreated = true;
+                                    this.alertMessage = 'New client "' + response.cl_email + '" has been successfully created and saved!';
+                                 } );
+        }    
+
+  }
+    
 
 }

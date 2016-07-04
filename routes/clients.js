@@ -118,7 +118,7 @@ router.post('/', function(req, res) {
             newClient.save()
             res.status(200).json({
                 message: 'Client created successfully',
-                obj: {firstName: newClient.cl_firstName}
+                obj: {cl_firstName: newClient.cl_firstName}
             });
         });
     });

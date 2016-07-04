@@ -22,10 +22,8 @@ import {AdminComponent} from './admin.component';
             <div *ngIf="isToken">
                 <header>
                         <ul class="nav nav-pills" id="sublinks">
-                            <li><a class="menu-button" [routerLink]="['./signup']">Create User</a></li>
-                            <li><a class="menu-button"  [routerLink]="['./signin']">Sign-in</a></li>
-                            <li><a class="menu-button"  [routerLink]="['./logout']">Logout</a></li>
-                            <li><a class="menu-button"  [routerLink]="['./admin']">Admin</a></li>
+                            <li><a class="menu-button" [routerLink]="['./signup']">Create New User</a></li>
+                            <li><a class="menu-button"  [routerLink]="['./admin']">User Admin</a></li>
                         </ul>
                 </header>
             </div>
