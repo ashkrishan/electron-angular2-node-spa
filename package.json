@@ -28,6 +28,7 @@
     "es6-shim": "^0.35.0",
     "express": "~4.13.1",
     "hbs": "~3.1.0",
+    "json2csv": "^3.5.1",
     "jsonwebtoken": "^7.0.0",
     "mongoose": "^4.4.19",
     "mongoose-sequence": "^3.0.2",

@@ -35,80 +35,108 @@ export class ClientsListComponent implements OnInit {
     constructor(private _clientDataService: ClientDataService, private _fb: FormBuilder, private _router: Router, private _authService: UserAuthService) {
         this.isToken = true;
 
-    }    
+    }
 
-    ngOnInit(){
+    ngOnInit() {
         this.searchForm = this._fb.group({
             searchbox: []
-        });        
+        });
 
         this.searchForm.controls.searchbox.valueChanges
             .filter(text => text.length > 2)
             .debounceTime(400)
             .distinctUntilChanged()
-            .subscribe(data => this._clientDataService.searchData(this.searchForm.value)            
-                                .subscribe(response =>  { this.clients = response 
-                                      console.log(response);
+            .subscribe(data => this._clientDataService.searchData(this.searchForm.value)
+                .subscribe(response => {
+                this.clients = response
+                    console.log(response);
 
-                                    }
-                                    ,error => { console.log(error);
-                                                if (error.error.name == 'TokenExpiredError') {
-                                                    alert("Your session has expired. Please re-login!");
-                                                    this._authService.logoutUser();
-                                                    this._router.navigateByUrl('/auth/signin');
-                                                    location.reload();
-                                                } else {
-                                                    console.log(error);
-                                                }
-                                              })
+                }
+                , error => {
+                    console.log(error);
+                    if (error.error.name == 'TokenExpiredError') {
+                        alert("Your session has expired. Please re-login!");
+                        this._authService.logoutUser();
+                        this._router.navigateByUrl('/auth/signin');
+                        location.reload();
+                    } else {
+                        console.log(error);
+                    }
+                })
             )
-            
-        }
+
+    }
 
 
-        onEditClient(clientId) {
-            console.log(clientId);
-            this._router.navigate(['/clients/' + clientId])                
-            
-        }
+    onEditClient(clientId) {
+        console.log(clientId);
+        this._router.navigate(['/clients/' + clientId])
 
+    }
+
+    onDownload() {
+        //var downloadWindow = window;
+        var reader = new FileReader();
+        this._clientDataService.downloadClientData()
+            .subscribe(data => { 
+                //downloadWindow = window.open(window.URL.createObjectURL(data));
+                reader.readAsDataURL(data);
+
+                }
+                ,
+            error => console.log("Error downloading file"),
+            () => { console.log('File download completed')
+                    //downloadWindow.close();
+                  }
+
+            )
+   // var test;   
+    reader.onloadend = function (e) {
+        var downloadWindow = window.open(reader.result, 'csv' );
+        setTimeout(() => downloadWindow.close(), 20000);
+        return false;
     
-            //.subscribe(response => console.log(response));
+
+  }
+    }
 
 
-        // this._clientDataService.getData()            
-        //     .subscribe(response =>  { this.clients = response 
-        //                               console.log(response);
-        //                             }
-        //                             ,error => console.log(error)
-                                   
+    //.subscribe(response => console.log(response));
 
-            // );
-    
+
+    // this._clientDataService.getData()            
+    //     .subscribe(response =>  { this.clients = response 
+    //                               console.log(response);
+    //                             }
+    //                             ,error => console.log(error)
+
+
+    // );
+
 
     // onSearch() {
     //    this.clients$ = this.searchForm.controls.searchbox.valueChanges
     //                     .subscribe(response => console.log(response));
 
-        // var search = this.searchForm.find('searchbox');
-        // let searchStream = search.valueChanges
-        //     .filter(text => text.length > 2)
-        //     .debounceTime(500)
-        //     .distinctUntilChanged()
+    // var search = this.searchForm.find('searchbox');
+    // let searchStream = search.valueChanges
+    //     .filter(text => text.length > 2)
+    //     .debounceTime(500)
+    //     .distinctUntilChanged()
 
-        // searchStream.subscribe(data => this._clientDataService.getData()            
-        //                         .subscribe(response =>  { this.clients = response 
-        //                               console.log(response);
-        //                             }
-        //                             ,error => console.log(error))
-        //     );
+    // searchStream.subscribe(data => this._clientDataService.getData()            
+    //                         .subscribe(response =>  { this.clients = response 
+    //                               console.log(response);
+    //                             }
+    //                             ,error => console.log(error))
+    //     );
 
-        // searchStream.
+    // searchStream.
 
-            
-        // console.log(search);
-        // this._clientDataService.searchData(search)
-        //     .subscribe(response => console.log(response),
-        //                 error => console.log(error))
-    }
+
+    // console.log(search);
+    // this._clientDataService.searchData(search)
+    //     .subscribe(response => console.log(response),
+    //                 error => console.log(error))
+}
 

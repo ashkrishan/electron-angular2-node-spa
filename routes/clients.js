@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
+var json2csv = require('json2csv');
+var fs = require('fs');
 
 
 var User = require('../models/user');
@@ -33,7 +35,8 @@ router.post('/search', function(req,res) {
                          {cl_firstName: new RegExp(req.body.searchbox, 'i')}, 
                          {cl_lastName: new RegExp(req.body.searchbox, 'i')} 
                        ] 
-                } , function(err, results) {
+                } , 
+                function(err, results) {
         if(err) {
             console.log(err)
             return res.status(404).json({
@@ -42,7 +45,8 @@ router.post('/search', function(req,res) {
 
             });
         }
-        console.log(results)
+        // console.log("Show me Keys " +  Object.keys(Client.schema.paths) + '/n');
+        // console.log(results);
         res.status(200).json({
             message: 'Search results found',
             obj: results
@@ -50,6 +54,45 @@ router.post('/search', function(req,res) {
     });
 });
 
+//Download or export clients
+router.get('/download-clients', function(req, res) {
+    console.log("request received");
+    var decoded = jwt.decode(req.query.token);
+    User.findById(decoded.user._id, function(err, loggedInUser) {    //get logegd in user
+        if(err) {
+            return res.status(401).json({
+                title: 'Invalid token user request',
+                error: err
+            });
+        }   
+        console.log("clients found")
+        Client.find({}, function(err, clients) {
+            if (err) {
+                return res.status(404).json({
+                    title: 'Error occured during finding clients',
+                    error: err
+                });
+
+             } 
+             console.log(Object.keys(Client.schema.paths));
+             json2csv({ data: clients, fields: Object.keys(Client.schema.paths) }, function(err, csvData) {
+                    if(err) {
+                        return res.status(404).json({
+                            title: 'Error occured during json2csv',
+                            error: err
+                        });
+                    }
+                    console.log("csv-data" + csvData);
+                    res.attachment('download-clients.csv');
+                    res.end(csvData, 'UTF-8');
+
+                    
+             });
+
+        });
+    });
+        
+});
 
 
 

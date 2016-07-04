@@ -69,6 +69,16 @@ export class ClientDataService {
                 .catch(error => Observable.throw(JSON.parse(error._body)));
 
     }
+    
+    downloadClientData() {
+        const token = sessionStorage.getItem('token') ? '?token=' + sessionStorage.getItem('token') : ' ';
+        var header = new Headers();
+        header.append('responseType', 'arraybuffer');
+        return this._http.get(this._url + '/download-clients' + token)
+            //.map(response => console.log(response))
+            .map(response => new Blob([response._body], {type: 'text/csv;charset=utf-8;' }))
+            .catch(error => Observable.throw(error))
+    }
 
 
 
